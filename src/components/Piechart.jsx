@@ -52,10 +52,8 @@ getColors=(chart)=>{
 
     render() {
         return (
-            <div>
-           
-            {this.props.areaOrPop==="All" &&(
-                 <div className="piechart-container">
+            <div className="piechart-container">
+            {(this.props.areaOrPop==="All"||this.props.areaOrPop==="Population") &&(
                         <div className="piechart">
                             {(!this.props.loading)?null:<h3> Country Population</h3>}
                                <Pie
@@ -66,47 +64,24 @@ getColors=(chart)=>{
                                             backgroundColor:this.getColors(this.props.chart)}]
                                     }}
                                     height='80%'/>
-                        </div>
+                        </div>)}
 
-                         <div className="piechart">
-                         {(!this.props.loading)?null:<h3> Country Area</h3>}
-                                <Pie
+                       
+
+                        {(this.props.areaOrPop==="All"||this.props.areaOrPop==="Area") &&(
+                        <div className="piechart">
+                            {(!this.props.loading)?null:<h3> Country Population</h3>}
+                               <Pie
                                     data={{
                                         labels:this.getLabels(),
-                                        datasets:[{
+                                         datasets:[{
                                             data:this.getArea(),
                                             backgroundColor:this.getColors(this.props.chart)}]
                                     }}
                                     height='80%'/>
-                         </div>
-             </div>) 
-            || ((this.props.areaOrPop==="Area" )&& 
-                    (<div className="piechart">
-                        <h3> Country Area</h3>
-                          <Pie
-                                data={{
-                                    labels:this.getLabels(),
-                                    datasets:[{
-                                        data:this.getArea(),
-                                        backgroundColor:this.getColors(this.props.chart)}]
-                                }}
-                                height='80%'
-                            />
-                    </div>))
-            ||((this.props.areaOrPop==="Population")&& 
-               (<div className="piechart">
-                     <h3> Country Population</h3>
-                     <Pie
-                            data={{
-                            labels:this.getLabels(this.props.chart),
-                            datasets:[{
-                            data:this.getPopulation(this.props.chart),
-                            backgroundColor:this.getColors(this.props.chart)}]
-                        }}
-                    height='80%'
-                    />
-                </div>)
-)}
+                        </div>)}
+             
+
             </div>
         )
     }
