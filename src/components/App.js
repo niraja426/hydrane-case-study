@@ -14,7 +14,7 @@ export default class App extends Component {
     this.state={
       isLoading:false,
       data:[],
-      selectedContinent:" ",
+      selectedContinent:"",
       selectAreaOrPopulation:" ",
       chart:5
 

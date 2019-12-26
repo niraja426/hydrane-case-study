@@ -37,11 +37,10 @@
 .table{
   width:80%;
   border-collapse: collapse;
+  margin: 0 auto;
 
 }
-.table th{
-  /* width:25%; */
-}
+
 
 table, th, td,tr {
   border: 1px solid black;

@@ -8,7 +8,7 @@ export default function Thead(props) {
                                 <th scope="col">Country </th>
                                  {(props.areaOrPopulation==="Area" || props.areaOrPopulation===" ") && <th scope="col">Area</th>}
                                 {(props.areaOrPopulation==="Population" || props.areaOrPopulation===" ") && <th scope="col">Population</th> }                              
-                                 </tr>
-                    </thead>   
+                        </tr>
+        </thead>   
     )
 }

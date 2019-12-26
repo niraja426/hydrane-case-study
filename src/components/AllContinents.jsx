@@ -16,8 +16,8 @@ export default class AllContinents extends Component {
                 <table className="table table table-bordered table-striped mb-0">
                  {(!this.props.loading)?null:<Thead areaOrPopulation={this.props.selectAreaOrPopulation}/>  }
 
-                    {this.props.data
-                    .filter(d=>{return(d.continentName.includes(this.props.selectedContinent))
+
+                    {this.props.data.filter(d=>{return(d.continentName.includes(this.props.selectedContinent))
                     })
                     .map((element)=>{
                         return(

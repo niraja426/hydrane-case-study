@@ -5,7 +5,7 @@ export default class Piechart extends Component {
 
 getSorted=()=>{
     var sorted=this.props.data.filter((f)=>{
-        if(this.props.selectedContinent===" ") return f
+        if(this.props.selectedContinent==="") return f
         else return (f.continentName===this.props.selectedContinent)
     }).slice(0,this.props.chart)
     console.log("youpppiieee",sorted)
