@@ -5,15 +5,17 @@ export default function Footer(props) {
         (!props.loading)?null: <tfoot>
             <tr>
                 <td colspan="2">TOTAL</td>
-                {(props.selectedAreaOrPopulation==="Area" ||props.selectedAreaOrPopulation==="All") 
-                && <td>{props.data.reduce((a,i)=>{
-                    return a+Number(i.areaInSqKm)
-                },0)}
-</td>}  
-                {(props.selectedAreaOrPopulation==="Population"||props.selectedAreaOrPopulation==="All") && <td>{props.data.reduce((a,i)=>{
+                {(props.selectedAreaOrPopulation==="Area" ||props.selectedAreaOrPopulation==="All") && 
+                <td>{props.data.reduce((a,i)=>{
+                        return a+Number(i.areaInSqKm)
+                    },0)}
+                </td>}  
+
+                {(props.selectedAreaOrPopulation==="Population"||props.selectedAreaOrPopulation==="All") && 
+                <td>{props.data.reduce((a,i)=>{
                         return a+Number(i.population)
                     },0)}
-</td>}
+                </td>}
             </tr>
          </tfoot>
         

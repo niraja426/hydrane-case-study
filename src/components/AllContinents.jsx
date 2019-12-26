@@ -1,17 +1,9 @@
 import React, { Component } from 'react'
-import Thead from './Thead'
-import Piechart from './Piechart'
-
 
 export default class AllContinents extends Component {
-    //   handleClick=()
-  
-   
     render() {
         return (
             <tbody>
-
-
                     {this.props.data
                     .map((element)=>{
                         return(

@@ -37,28 +37,30 @@ export default class App extends Component {
 
   }
 
+  //handled continent change and prepared filter data
   handleContinentChange=(e)=>{
     const result = (e.target.value==="All")?this.state.data:this.state.data.filter(f => f.continentName===e.target.value)
     this.setState({
          selectedContinent:e.target.value,
          filteredData:result
-      
     })
     }
-
+  //handled area or population select
   handleChange=(e)=>{
     this.setState({
       [e.target.name]:e.target.value
     })
   }
   
-
+//extract name of continents from database filtering repeated ones and sorting alphabetically
 getContinents=()=>{
     return this.state.data
       .map(element => element.continentName)
       .filter((continent, i, continents) => continents.indexOf(continent) === i)
       .sort();
   }
+
+  //sorting data by ascending or descending
   handleClick=(e)=>{
     var sortby=e.target.id
     var ret1 = (this.state.sort)? 1:-1
@@ -83,13 +85,12 @@ getContinents=()=>{
           else return 0
         })
     }
-    
     this.setState({
       sort:!this.state.sort,
       filterdData:sorted
     })
-    console.log("sorted", this.state.sort, this.state.filteredData)
     }
+
   render(){
   return (
 
@@ -152,17 +153,18 @@ getContinents=()=>{
                     </thead>  
                 }
         
-        <AllContinents 
-            data={this.state.filteredData} 
-            selectedContinent={this.state.selectedContinent} 
-            selectAreaOrPopulation={this.state.selectAreaOrPopulation}
-            loading={this.state.isLoading}
-          />
-
-                <Footer
+            <AllContinents 
+                data={this.state.filteredData} 
+                selectedContinent={this.state.selectedContinent} 
+                selectAreaOrPopulation={this.state.selectAreaOrPopulation}
                 loading={this.state.isLoading}
-                data={this.state.filteredData}
-                selectedAreaOrPopulation={this.state.selectAreaOrPopulation}/>
+              />
+
+              <Footer
+                    loading={this.state.isLoading}
+                    data={this.state.filteredData}
+                    selectedAreaOrPopulation={this.state.selectAreaOrPopulation}
+              />
             </table>
           </div>
   </div>
