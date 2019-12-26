@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Thead from './Thead'
-import Piechart from './Piechart'
+import Piechart from './PiechartPopulation'
 
 
 export default class AllContinents extends Component {

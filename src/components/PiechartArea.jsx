@@ -1,7 +1,7 @@
 import {Pie} from 'react-chartjs-2'
 import React, { Component } from 'react'
 
-export default class Piechart extends Component {
+export default class PiechartArea extends Component {
   
 
 getLabels=()=>{
@@ -16,7 +16,7 @@ getLabels=()=>{
 getValues=()=>{
     var sorted=this.props.data.slice(0,5)
     var sorteddata=sorted.map((s)=>{
-        return s.population
+        return s.areaInSqKm
     })
     console.log("hello sorteddata", sorteddata)
    return sorteddata
@@ -25,7 +25,7 @@ getValues=()=>{
     render() {
         return (
             <div>
-                <h3>PIE Chart</h3>
+                <h3> Country Area</h3>
                 <Pie
                     data={{
                         labels:this.getLabels(),
@@ -33,7 +33,7 @@ getValues=()=>{
                             data:this.getValues(),
                             backgroundColor:["red","yellow","green","blue","purple"]}]
                     }}
-                    height='50%'
+                    height='80%'
                 />
             </div>
         )

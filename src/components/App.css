@@ -57,4 +57,13 @@ table, th, td,tr {
   tr:nth-child(even) {
     background-color: #f2f2f2;
   }
- 
+  .piechart-container{
+    display:flex;
+    margin-top:30px;
+  }
+  .piechart{
+    width:50%;
+    
+
+  }
+  
