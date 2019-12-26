@@ -144,10 +144,10 @@ getContinents=()=>{
             {(!this.state.isLoading)?null:
                     <thead>
                         <tr>
-                                <th id="continentName" onClick={this.handleClick}scope="col">Continent &#9650;</th>
+                                <th id="continentName" onClick={this.handleClick}scope="col">Continent &#9660; &#9650; </th>
                                 <th id="countryName" onClick={this.handleClick} scope="col">Country &#9660; &#9650;</th>
-                                 {(this.state.selectAreaOrPopulation==="Area" || this.state.selectAreaOrPopulation==="All") && <th onClick={this.handleClick} id="areaInSqKm" scope="col">Area &#9650;</th>}
-                                {(this.state.selectAreaOrPopulation==="Population" || this.state.selectAreaOrPopulation==="All") && <th  onClick={this.handleClick} id="population" scope="col">Population &#9650;</th> }                              
+                                 {(this.state.selectAreaOrPopulation==="Area" || this.state.selectAreaOrPopulation==="All") && <th onClick={this.handleClick} id="areaInSqKm" scope="col">Area &#9660; &#9650;</th>}
+                                {(this.state.selectAreaOrPopulation==="Population" || this.state.selectAreaOrPopulation==="All") && <th  onClick={this.handleClick} id="population" scope="col">Population &#9660; &#9650;</th> }                              
                         </tr>
                     </thead>  
                 }
