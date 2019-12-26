@@ -1,0 +1,31 @@
+* {
+  margin:0;
+}
+.App {
+  text-align: center;
+}
+
+
+.header{
+  background:#242E40;
+  color:#FEA902;
+  padding-top:20px;
+}
+
+.filters-container{
+  display:flex;
+}
+.filter{
+  width:33.330%;
+  margin-top:50px;
+
+}
+.button{
+  font-size: 16px;;
+  padding:10px;
+  margin:10px;
+  border-radius:10px;
+  background:#128496  ;
+  color:white;
+  width:300px;
+}
