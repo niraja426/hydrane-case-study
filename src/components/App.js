@@ -16,7 +16,8 @@ export default class App extends Component {
       data:[],
       selectedContinent:"",
       selectAreaOrPopulation:" ",
-      chart:5
+      chart:5,
+      filteredData:[]
 
     }
   }
@@ -26,7 +27,8 @@ export default class App extends Component {
     .then(response=>{
       this.setState({
         data:response.data.geonames,
-        isLoading:!this.state.isLoading
+        isLoading:!this.state.isLoading,
+        filteredData:response.data.geonames
       })
       console.log(this.state.data)
     })
@@ -34,11 +36,23 @@ export default class App extends Component {
 
   }
 
+  handleContinentChange=(e)=>{
+    const result = (e.target.value==="")?this.state.data:this.state.data.filter(f => f.continentName===e.target.value)
+    this.setState({
+         selectedContinent:e.target.value,
+         filteredData:result
+      
+    })
+    }
+
   handleChange=(e)=>{
     this.setState({
-        [e.target.name]:e.target.value
+      [e.target.name]:e.target.value
+
+
     })
-}
+  }
+  
 
 getContinents=()=>{
     return this.state.data
@@ -55,7 +69,7 @@ getContinents=()=>{
         <div className="filters-container">
                 <div className="filter">
                  <label>Filter by Continents</label>
-                        <select name="selectedContinent" value={this.state.selectedContinent} onChange={this.handleChange}>
+                        <select name="selectedContinent" value={this.state.selectedContinent} onChange={this.handleContinentChange}>
                              <option value="">All Continents</option>
                                 {this.getContinents().map(continent => (<option key={continent} value={continent}>{continent}</option> ))}
                         </select>
@@ -81,11 +95,11 @@ getContinents=()=>{
                  </select>
                 </div>
 
-                
             </div>
+
       
            <Piechart 
-              data={this.state.data} 
+              data={this.state.filteredData} 
               chart={this.state.chart} 
               areaOrPop={this.state.selectAreaOrPopulation}
               selectedContinent={this.state.selectedContinent}
@@ -95,7 +109,7 @@ getContinents=()=>{
 
 
         <AllContinents 
-            data={this.state.data} 
+            data={this.state.filteredData} 
             selectedContinent={this.state.selectedContinent} 
             selectAreaOrPopulation={this.state.selectAreaOrPopulation}
             loading={this.state.isLoading}

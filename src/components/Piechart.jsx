@@ -3,18 +3,13 @@ import React, { Component } from 'react'
 
 export default class Piechart extends Component {
 
-getSorted=()=>{
-    var sorted=this.props.data.filter((f)=>{
-        if(this.props.selectedContinent==="") return f
-        else return (f.continentName===this.props.selectedContinent)
-    }).slice(0,this.props.chart)
-    console.log("youpppiieee",sorted)
-return sorted
-
+getSlice=()=>{
+    var sorted=this.props.data.slice(0,this.props.chart)
+    return sorted
 }
    
 getLabels=()=>{
-   var sorted=this.getSorted()
+   var sorted=this.getSlice()
     var labels= sorted.map((s)=>{
         return s.countryName
     })
@@ -23,7 +18,7 @@ getLabels=()=>{
    
 }
 getPopulation=(chart)=>{
-    var sorted=this.getSorted()
+    var sorted=this.getSlice()
     var sorteddata=sorted.map((s)=>{
         return s.population
     })
@@ -31,7 +26,7 @@ getPopulation=(chart)=>{
    return sorteddata
 }
 getArea=(chart)=>{
-    var sorted=this.getSorted()
+    var sorted=this.getSlice()
     var sorteddata=sorted.map((s)=>{
         return s.areaInSqKm
     })
