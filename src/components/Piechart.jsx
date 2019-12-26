@@ -5,6 +5,20 @@ export default class Piechart extends Component {
 
 getSlice=()=>{
     var sorted=this.props.data.slice(0,this.props.chart)
+    var remaining=this.props.data.slice(this.props.chart+1,this.props.data.length) 
+    var sumPopulation=remaining.reduce((a,i)=>{
+        return a+Number(i.population)
+
+    },0)
+    var sumArea=remaining.reduce((a,i)=>{
+        return a+Number(i.areaInSqKm)
+
+    },0)
+    var others={}
+    others.countryName="others"
+    others.population=sumPopulation.toString()
+    others.areaInSqKm=sumArea.toString()
+    sorted.push(others)
     return sorted
 }
    
@@ -16,14 +30,15 @@ getLabels=()=>{
     return labels
    
 }
-getPopulation=(chart)=>{
+getPopulation=()=>{
     var sorted=this.getSlice()
     var sorteddata=sorted.map((s)=>{
         return s.population
     })
+    console.log(sorteddata)
    return sorteddata
 }
-getArea=(chart)=>{
+getArea=()=>{
     var sorted=this.getSlice()
     var sorteddata=sorted.map((s)=>{
         return s.areaInSqKm
@@ -32,7 +47,7 @@ getArea=(chart)=>{
 }
 getColors=(chart)=>{
     var colors=["red","yellow","green","blue","purple","aqua","brown","lightgreen","indigo","lightpink","magenta","silver","fuchsia","darkorange","darkgreen","darksalmon","gold","darkorchid","beige","darkolivegreen"]
-    return colors.slice(0,chart)   
+    return colors.slice(0,chart+1)   
 }
 
     render() {
@@ -45,9 +60,9 @@ getColors=(chart)=>{
                             {(!this.props.loading)?null:<h3> Country Population</h3>}
                                <Pie
                                     data={{
-                                        labels:this.getLabels(this.props.chart),
-                                        datasets:[{
-                                            data:this.getPopulation(this.props.chart),
+                                        labels:this.getLabels(),
+                                         datasets:[{
+                                            data:this.getPopulation(),
                                             backgroundColor:this.getColors(this.props.chart)}]
                                     }}
                                     height='80%'/>
@@ -57,9 +72,9 @@ getColors=(chart)=>{
                          {(!this.props.loading)?null:<h3> Country Area</h3>}
                                 <Pie
                                     data={{
-                                        labels:this.getLabels(this.props.chart),
+                                        labels:this.getLabels(),
                                         datasets:[{
-                                            data:this.getArea(this.props.chart),
+                                            data:this.getArea(),
                                             backgroundColor:this.getColors(this.props.chart)}]
                                     }}
                                     height='80%'/>
@@ -70,9 +85,9 @@ getColors=(chart)=>{
                         <h3> Country Area</h3>
                           <Pie
                                 data={{
-                                    labels:this.getLabels(this.props.chart),
+                                    labels:this.getLabels(),
                                     datasets:[{
-                                        data:this.getArea(this.props.chart),
+                                        data:this.getArea(),
                                         backgroundColor:this.getColors(this.props.chart)}]
                                 }}
                                 height='80%'

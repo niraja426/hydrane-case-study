@@ -63,12 +63,27 @@ getContinents=()=>{
     var sortby=e.target.id
     var ret1 = (this.state.sort)? 1:-1
     var ret2 = (this.state.sort)? -1:1
+    var sorted=[]
     console.log(sortby,this.state.filteredData)
-    var sorted=this.state.filteredData.sort((a,b)=>{
-      if(a[sortby]>b[sortby]) return ret1;
-      else if(a[sortby]<b[sortby]) return ret2;
-      else return 0
-    })
+    switch (sortby){
+      case "continentName":
+      case "countryName":
+        sorted=this.state.filteredData.sort((a,b)=>{
+          if(a[sortby]>b[sortby]) return ret1;
+          else if(a[sortby]<b[sortby]) return ret2;
+          else return 0
+        })
+       break;
+
+       case "areaInSqKm":
+       case "population":
+        sorted=this.state.filteredData.sort((a,b)=>{
+          if(Number(a[sortby])>Number(b[sortby])) return ret1;
+          else if(Number(a[sortby])<Number(b[sortby])) return ret2;
+          else return 0
+        })
+    }
+    
     this.setState({
       sort:!this.state.sort,
       filterdData:sorted
