@@ -1,40 +1,36 @@
 import React,{Component}from 'react';
+import "bootstrap/dist/css/bootstrap.css";
+
 import './App.css';
 import Home from './Home';
-import FilterByContinent from './FIlterByContinent';
-import FilterByMetrix from './FilterByMetrix'
-import FilterChart from './FilterChart';
 import axios from 'axios'
+import AllContinents from './AllContinents'
 
 
 export default class App extends Component {
   constructor(){
     super()
     this.state={
-      continents:[]
+      data:[]
     }
   }
+  //Data fetch from API 
   handleSubmit=()=>{
     axios.get('http://api.geonames.org/countryInfoJSON?formatted=true&username=hydrane')
-    .then(response=>console.log(response))
+    .then(response=>{
+      this.setState({
+        data:response.data.geonames
+      })
+      console.log(this.state.data)
+    })
     .catch(err=>console.log(err))
 
   }
   render(){
   return (
     <div className="App">
-      <Home onOkSubmit={this.handleSubmit}/>
-        <div className="filters-container">
-              <div className="filter">
-                  <FilterByContinent/>
-              </div>
-              <div className="filter">
-                  <FilterByMetrix/>
-              </div>
-              <div className="filter">
-                  <FilterChart/>
-              </div>
-        </div>
+        <Home onOkSubmit={this.handleSubmit}/>
+        <AllContinents data={this.state.data}/>
   </div>
   );
 }

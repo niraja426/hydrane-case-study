@@ -29,3 +29,32 @@
   color:white;
   width:300px;
 }
+.table-container{
+    margin-left:5%;
+    margin-right:5%;
+    margin-top:40px;
+}
+.table{
+  width:100%;
+  border-collapse: collapse;
+
+}
+.table th{
+  width:25%;
+}
+
+table, th, td,tr {
+  border: 1px solid black;
+}
+.my-custom-scrollbar {
+  position: relative;
+  height: 350px;
+  overflow: auto;
+  }
+  .table-wrapper-scroll-y {
+  display: block;
+  } 
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+ 
