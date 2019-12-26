@@ -4,24 +4,12 @@ import Piechart from './Piechart'
 
 
 export default class AllContinents extends Component {
-      
+    //   handleClick=()
   
    
     render() {
         return (
-            <div className="table-container table-wrapper-scroll-y my-custom-scrollbar ">
-                
-                <table className="table table table-bordered table-striped mb-0">
-                 {(!this.props.loading)?null:
-                    <thead>
-                        <tr>
-                                <th scope="col">Continent</th>
-                                <th onClick={this.handleClick} scope="col">Country </th>
-                                 {(this.props.selectedAreaOrPopulation==="Area" || this.props.selectAreaOrPopulation===" ") && <th scope="col">Area</th>}
-                                {(this.props.selectAreaOrPopulation==="Population" || this.props.selectAreaOrPopulation===" ") && <th scope="col">Population</th> }                              
-                        </tr>
-                    </thead>  
-                }
+            <tbody>
 
 
                     {this.props.data
@@ -36,8 +24,7 @@ export default class AllContinents extends Component {
                         )
 
                     })}
-                </table>
-            </div>
+               </tbody>
         )
     }
 }

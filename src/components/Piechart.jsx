@@ -13,7 +13,6 @@ getLabels=()=>{
     var labels= sorted.map((s)=>{
         return s.countryName
     })
-    console.log("hello labels", labels)
     return labels
    
 }
@@ -22,7 +21,6 @@ getPopulation=(chart)=>{
     var sorteddata=sorted.map((s)=>{
         return s.population
     })
-    console.log("hello sorteddata", sorteddata)
    return sorteddata
 }
 getArea=(chart)=>{
@@ -30,7 +28,6 @@ getArea=(chart)=>{
     var sorteddata=sorted.map((s)=>{
         return s.areaInSqKm
     })
-    console.log("hello sorteddata", sorteddata)
    return sorteddata
 }
 getColors=(chart)=>{

@@ -17,7 +17,8 @@ export default class App extends Component {
       selectedContinent:"",
       selectAreaOrPopulation:" ",
       chart:5,
-      filteredData:[]
+      filteredData:[],
+      sort:true //ascending
 
     }
   }
@@ -60,6 +61,22 @@ getContinents=()=>{
       .filter((continent, i, continents) => continents.indexOf(continent) === i)
       .sort();
   }
+  handleClick=(e)=>{
+    var sortby=e.target.id
+    var ret1 = (this.state.sort)? 1:-1
+    var ret2 = (this.state.sort)? -1:1
+    console.log(sortby,this.state.filteredData)
+    var sorted=this.state.filteredData.sort((a,b)=>{
+      if(a[sortby]>b[sortby]) return ret1;
+      else if(a[sortby]<b[sortby]) return ret2;
+      else return 0
+    })
+    this.setState({
+      sort:!this.state.sort,
+      filterdData:sorted
+    })
+    console.log("sorted", this.state.sort, this.state.filteredData)
+    }
   render(){
   return (
 
@@ -107,13 +124,30 @@ getContinents=()=>{
               loading={this.state.isLoading}
             />
 
-
+        <div className="table-container table-wrapper-scroll-y my-custom-scrollbar ">
+                
+          <table className="table table table-bordered table-striped mb-0">
+            
+            {(!this.state.isLoading)?null:
+                    <thead>
+                        <tr>
+                                <th id="continentName" onClick={this.handleClick}scope="col">Continent &#9650;</th>
+                                <th id="countryName" onClick={this.handleClick} scope="col">Country &#9660; &#9650;</th>
+                                 {(this.state.selectedAreaOrPopulation==="Area" || this.state.selectAreaOrPopulation===" ") && <th onClick={this.handleClick} id="areaInSqKm" scope="col">Area &#9650;</th>}
+                                {(this.state.selectAreaOrPopulation==="Population" || this.state.selectAreaOrPopulation===" ") && <th  onClick={this.handleClick} id="population" scope="col">Population &#9650;</th> }                              
+                        </tr>
+                    </thead>  
+                }
+        
         <AllContinents 
             data={this.state.filteredData} 
             selectedContinent={this.state.selectedContinent} 
             selectAreaOrPopulation={this.state.selectAreaOrPopulation}
             loading={this.state.isLoading}
           />
+          <tfoot></tfoot>
+            </table>
+          </div>
   </div>
   );
 }
