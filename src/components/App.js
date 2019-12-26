@@ -49,8 +49,6 @@ export default class App extends Component {
   handleChange=(e)=>{
     this.setState({
       [e.target.name]:e.target.value
-
-
     })
   }
   
@@ -114,15 +112,15 @@ getContinents=()=>{
 
             </div>
 
-      
-           <Piechart 
+      {(this.state.isLoading)&&<Piechart 
               data={this.state.filteredData} 
               chart={this.state.chart} 
               areaOrPop={this.state.selectAreaOrPopulation}
               selectedContinent={this.state.selectedContinent}
               selectAreaOrPopulation={this.state.selectAreaOrPopulation}
               loading={this.state.isLoading}
-            />
+            />}
+           
 
         <div className="table-container table-wrapper-scroll-y my-custom-scrollbar ">
                 
