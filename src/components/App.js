@@ -5,6 +5,7 @@ import './App.css';
 import Home from './Home';
 import axios from 'axios'
 import AllContinents from './AllContinents'
+import Piechart from './Piechart';
 
 
 export default class App extends Component {
@@ -30,6 +31,7 @@ export default class App extends Component {
   return (
     <div className="App">
         <Home onOkSubmit={this.handleSubmit}/>
+        <Piechart data={this.state.data}/>
         <AllContinents data={this.state.data}/>
   </div>
   );
