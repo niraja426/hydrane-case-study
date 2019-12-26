@@ -39,7 +39,7 @@ getColors=(chart)=>{
         return (
             <div>
            
-            {this.props.areaOrPop===" " &&(
+            {this.props.areaOrPop==="All" &&(
                  <div className="piechart-container">
                         <div className="piechart">
                             {(!this.props.loading)?null:<h3> Country Population</h3>}

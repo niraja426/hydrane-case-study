@@ -1,11 +1,11 @@
 import React,{Component}from 'react';
 import "bootstrap/dist/css/bootstrap.css";
-
 import './App.css';
 import Home from './Home';
 import axios from 'axios'
 import AllContinents from './AllContinents'
 import Piechart from './Piechart';
+import Footer from './Footer';
 
 
 export default class App extends Component {
@@ -14,8 +14,8 @@ export default class App extends Component {
     this.state={
       isLoading:false,
       data:[],
-      selectedContinent:"",
-      selectAreaOrPopulation:" ",
+      selectedContinent:"All",
+      selectAreaOrPopulation:"All",
       chart:5,
       filteredData:[],
       sort:true //ascending
@@ -38,7 +38,7 @@ export default class App extends Component {
   }
 
   handleContinentChange=(e)=>{
-    const result = (e.target.value==="")?this.state.data:this.state.data.filter(f => f.continentName===e.target.value)
+    const result = (e.target.value==="All")?this.state.data:this.state.data.filter(f => f.continentName===e.target.value)
     this.setState({
          selectedContinent:e.target.value,
          filteredData:result
@@ -87,7 +87,7 @@ getContinents=()=>{
                 <div className="filter">
                  <label>Filter by Continents</label>
                         <select name="selectedContinent" value={this.state.selectedContinent} onChange={this.handleContinentChange}>
-                             <option value="">All Continents</option>
+                             <option value="All">All Continents</option>
                                 {this.getContinents().map(continent => (<option key={continent} value={continent}>{continent}</option> ))}
                         </select>
                 </div>
@@ -95,14 +95,14 @@ getContinents=()=>{
                 <div className="filter">
                 <label>Filter by Population/Area</label>
                 <select name="selectAreaOrPopulation" value={this.state.selectAreaOrPopulation} onChange={this.handleChange}>
-                        <option value=" ">All</option>
+                        <option value="All">All</option>
                         <option value="Area">Area</option>
                         <option value="Population">Population</option>
                  </select>
                 </div>
 
                 <div className="filter">
-                <label>Filter by Chart</label>
+                <label>Chart max result</label>
                 <select name="chart" value={this.state.chart} onChange={this.handleChange}>
                         <option value="5">5</option>
                         <option value="10">10</option>
@@ -133,8 +133,8 @@ getContinents=()=>{
                         <tr>
                                 <th id="continentName" onClick={this.handleClick}scope="col">Continent &#9650;</th>
                                 <th id="countryName" onClick={this.handleClick} scope="col">Country &#9660; &#9650;</th>
-                                 {(this.state.selectedAreaOrPopulation==="Area" || this.state.selectAreaOrPopulation===" ") && <th onClick={this.handleClick} id="areaInSqKm" scope="col">Area &#9650;</th>}
-                                {(this.state.selectAreaOrPopulation==="Population" || this.state.selectAreaOrPopulation===" ") && <th  onClick={this.handleClick} id="population" scope="col">Population &#9650;</th> }                              
+                                 {(this.state.selectAreaOrPopulation==="Area" || this.state.selectAreaOrPopulation==="All") && <th onClick={this.handleClick} id="areaInSqKm" scope="col">Area &#9650;</th>}
+                                {(this.state.selectAreaOrPopulation==="Population" || this.state.selectAreaOrPopulation==="All") && <th  onClick={this.handleClick} id="population" scope="col">Population &#9650;</th> }                              
                         </tr>
                     </thead>  
                 }
@@ -145,7 +145,11 @@ getContinents=()=>{
             selectAreaOrPopulation={this.state.selectAreaOrPopulation}
             loading={this.state.isLoading}
           />
-          <tfoot></tfoot>
+
+                <Footer
+                loading={this.state.isLoading}
+                data={this.state.filteredData}
+                selectedAreaOrPopulation={this.state.selectAreaOrPopulation}/>
             </table>
           </div>
   </div>
