@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/hydrane-case-study/precache-manifest.09c38989d7617249c24de17fb49bf800.js"
+  "/hydrane-case-study/precache-manifest.c7496c30fbeeed31d31e3c18927592ab.js"
 );
 
 self.addEventListener('message', (event) => {
