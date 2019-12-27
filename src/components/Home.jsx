@@ -10,7 +10,7 @@ export default class Home extends Component {
     return (
         <div>
             <div className="header">
-                <h1>HYDRANE REACTJS FRONTEND DEV CASE STUDY</h1>
+                <h1>HYDRANE REACTJS FRONTEND DEV CS</h1>
                 <button onClick={this.handleClick} className="button">GO</button>             
             </div>
         </div>

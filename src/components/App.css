@@ -60,5 +60,8 @@ table, th, td,tr {
   .piechart{
     width:50%;
   }
+  label{
+    margin-right:10px;
+  }
   
   

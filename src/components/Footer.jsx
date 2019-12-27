@@ -4,7 +4,7 @@ export default function Footer(props) {
     return (
         (!props.loading)?null: <tfoot>
             <tr>
-                <td colspan="2">TOTAL</td>
+                <td colSpan="2">TOTAL</td>
                 {(props.selectedAreaOrPopulation==="Area" ||props.selectedAreaOrPopulation==="All") && 
                 <td>{props.data.reduce((a,i)=>{
                         return a+Number(i.areaInSqKm)

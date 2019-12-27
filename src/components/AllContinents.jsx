@@ -5,9 +5,9 @@ export default class AllContinents extends Component {
         return (
             <tbody>
                     {this.props.data
-                    .map((element)=>{
+                    .map((element,i)=>{
                         return(
-                        <tr>
+                        <tr key={i}>
                             <td>{element.continentName}</td>
                             <td>{element.countryName}</td>
                             {(this.props.selectAreaOrPopulation==="Area" ||this.props.selectAreaOrPopulation==="All") && <td>{element.areaInSqKm}</td>}  

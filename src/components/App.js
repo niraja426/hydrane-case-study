@@ -24,14 +24,19 @@ export default class App extends Component {
   }
   //Data fetch from API 
   handleSubmit=()=>{
+    this.setState({
+      isLoading:false
+    })
     axios.get('http://api.geonames.org/countryInfoJSON?formatted=true&username=hydrane')
     .then(response=>{
       this.setState({
         data:response.data.geonames,
-        isLoading:!this.state.isLoading,
-        filteredData:response.data.geonames
+        isLoading:true,
+        filteredData:response.data.geonames,
+        selectAreaOrPopulation:"All",
+        selectedContinent:"All",
+        chart:5
       })
-      console.log(this.state.data)
     })
     .catch(err=>console.log(err))
 
@@ -66,7 +71,6 @@ getContinents=()=>{
     var ret1 = (this.state.sort)? 1:-1
     var ret2 = (this.state.sort)? -1:1
     var sorted=[]
-    console.log(sortby,this.state.filteredData)
     switch (sortby){
       case "continentName":
       case "countryName":
@@ -99,8 +103,8 @@ getContinents=()=>{
 
         <div className="filters-container">
                 <div className="filter">
-                 <label>Filter by Continents</label>
-                        <select name="selectedContinent" value={this.state.selectedContinent} onChange={this.handleContinentChange}>
+                 <label>Filter by Continents </label>
+                        <select name="selectedContinent" value={this.state.selectedContinent} onChange={this.handleContinentChange} disabled={!this.state.isLoading?true:false}>
                              <option value="All">All Continents</option>
                                 {this.getContinents().map(continent => (<option key={continent} value={continent}>{continent}</option> ))}
                         </select>
@@ -108,16 +112,16 @@ getContinents=()=>{
 
                 <div className="filter">
                 <label>Filter by Population/Area</label>
-                <select name="selectAreaOrPopulation" value={this.state.selectAreaOrPopulation} onChange={this.handleChange}>
+                <select name="selectAreaOrPopulation" value={this.state.selectAreaOrPopulation} onChange={this.handleChange} disabled={!this.state.isLoading?true:false}>
                         <option value="All">All</option>
-                        <option value="Area">Area</option>
+                        <option value="Area">Area in SqKm</option>
                         <option value="Population">Population</option>
                  </select>
                 </div>
 
                 <div className="filter">
-                <label>Chart max result</label>
-                <select name="chart" value={this.state.chart} onChange={this.handleChange}>
+                <label>Chart max result </label>
+                <select name="chart" value={this.state.chart} onChange={this.handleChange} disabled={!this.state.isLoading?true:false}>
                         <option value="5">5</option>
                         <option value="10">10</option>
                         <option value="15">15</option>
@@ -147,7 +151,7 @@ getContinents=()=>{
                         <tr>
                                 <th id="continentName" onClick={this.handleClick}scope="col">Continent &#9660; &#9650; </th>
                                 <th id="countryName" onClick={this.handleClick} scope="col">Country &#9660; &#9650;</th>
-                                 {(this.state.selectAreaOrPopulation==="Area" || this.state.selectAreaOrPopulation==="All") && <th onClick={this.handleClick} id="areaInSqKm" scope="col">Area &#9660; &#9650;</th>}
+                                 {(this.state.selectAreaOrPopulation==="Area" || this.state.selectAreaOrPopulation==="All") && <th onClick={this.handleClick} id="areaInSqKm" scope="col">Area in SqKm &#9660; &#9650;</th>}
                                 {(this.state.selectAreaOrPopulation==="Population" || this.state.selectAreaOrPopulation==="All") && <th  onClick={this.handleClick} id="population" scope="col">Population &#9660; &#9650;</th> }                              
                         </tr>
                     </thead>  

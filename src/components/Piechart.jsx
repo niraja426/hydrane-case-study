@@ -32,7 +32,6 @@ getPopulation=()=>{
     var sorteddata=sorted.map((s)=>{
         return s.population
     })
-    console.log(sorteddata)
    return sorteddata
 }
 getArea=()=>{
@@ -59,7 +58,7 @@ getColors=(chart)=>{
                                 datasets:[{
                                     data:this.getPopulation(),
                                     backgroundColor:this.getColors(this.props.chart)}]
-                            }}
+                            }} 
                             height='80%'/>
                 </div>)}
 
