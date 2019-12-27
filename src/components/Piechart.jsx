@@ -66,7 +66,7 @@ getColors=(chart)=>{
 
             {(this.props.areaOrPop==="All"||this.props.areaOrPop==="Area") &&(
                 <div className="piechart">
-                    {(!this.props.loading)?null:<h3> Country Population</h3>}
+                    {(!this.props.loading)?null:<h3> Country Area</h3>}
                         <Pie
                             data={{
                                 labels:this.getLabels(),
